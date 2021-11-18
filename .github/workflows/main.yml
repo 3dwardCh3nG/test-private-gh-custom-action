@@ -20,12 +20,12 @@ jobs:
         name: Run action from private repo for action 1
         uses: ./.github/private-gh-action/action1
         with:
-          who-to-greet: 'Mona the Octocat'
+          who-to-greet: 'Mona the Octocat 1'
       - id: bar
         name: Run action from private repo for action 2
         uses: ./.github/private-gh-action/action2
         with:
-          who-to-greet: 'Mona the Octocat'
+          who-to-greet: 'Mona the Octocat 2'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
       - run: echo random-number ${{ steps.bar.outputs.random-number }}
