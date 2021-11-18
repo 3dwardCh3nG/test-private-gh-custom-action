@@ -17,20 +17,15 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           path: .github/private-gh-action
       - id: foo
-        name: Run action from private repo
+        name: Run action from private repo for action 1
         uses: ./.github/private-gh-action/action1
         with:
           who-to-greet: 'Mona the Octocat'
       - id: bar
-        name: Run action from private repo
-        uses: ./.github/private-gh-action/action1
+        name: Run action from private repo for action 2
+        uses: ./.github/private-gh-action/action2
         with:
           who-to-greet: 'Mona the Octocat'
-#      - name: Setup tmate session
-#        uses: mxschmitt/action-tmate@v3
-#        timeout-minutes: 60
-#        with:
-#          limit-access-to-actor: true
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
       - run: echo random-number ${{ steps.bar.outputs.random-number }}
