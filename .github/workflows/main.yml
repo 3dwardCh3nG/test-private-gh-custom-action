@@ -9,11 +9,17 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v2
-      - id: test
-        uses: nick-invision/private-action-loader@v3
+      - name: Get composite run steps repository
+        uses: actions/checkout@v2
         with:
-          pal-repo-token: ${{ secrets.REPO_TOKEN }}
-          pal-repo-name: 3dwardCh3nG/private-gh-action@v1
+          repository: 3dwardCh3nG/private-gh-action
+          ref: v1
+          token: ${{ secrets.PAT_TOKEN }}
+          path: .github/private-gh-action
+      - id: foo
+        name: Run action from private repo
+        uses: ./.github/private-gh-action
+        with:
           who-to-greet: 'Mona the Octocat'
-      - run: echo random-number ${{ steps.test.outputs.random-number }}
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
